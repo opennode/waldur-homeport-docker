@@ -1,0 +1,6 @@
+{
+  "apiEndpoint": "http://waldur-mastermind-api:8080/",
+  "ownerCanManageCustomer": true,
+  "docsLink": "https://opennode.atlassian.net/wiki/display/WD/Waldur+Documentation",
+  "accountingMode": "billing"
+}
