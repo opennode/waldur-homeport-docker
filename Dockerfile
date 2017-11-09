@@ -32,16 +32,27 @@ RUN cd /tmp && \
   chmod +x /usr/local/bin/gosu && \
   rm gosu.asc
 
-# Install HomePort
+COPY rootfs /
+
+### Install Homeport
 ENV container docker
-RUN yum -y install epel-release http://opennodecloud.com/centos/7/waldur-release.rpm
-RUN yum -y install waldur-homeport nginx jq
+RUN REPOLIST=rhel-7-server-rpms,rhel-7-server-optional-rpms,epel \
+    INSTALL_PKGS="golang-github-cpuguy83-go-md2man" && \
+    yum -y update-minimal --disablerepo "*" --enablerepo rhel-7-server-rpms --setopt=tsflags=nodocs \
+      --security --sec-severity=Important --sec-severity=Critical && \
+    curl -o epel-release-latest-7.noarch.rpm -SL https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+      --retry 5 --retry-max-time 0 -C - && \
+    yum -y localinstall epel-release-latest-7.noarch.rpm && rm epel-release-latest-7.noarch.rpm && \
+    yum -y install --disablerepo "*" --enablerepo ${REPOLIST} --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
+    yum -y install http://opennodecloud.com/centos/7/waldur-release.rpm && \
+    yum -y install waldur-homeport nginx jq && \
+    go-md2man -in /tmp/help.md -out /help.1 && \
+    yum clean all
+
 RUN rm -f /etc/nginx/nginx.conf \
     && ln -sf /etc/waldur-homeport/nginx.conf /etc/nginx/nginx.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
-
-COPY rootfs /
 
 ENTRYPOINT ["/app-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
