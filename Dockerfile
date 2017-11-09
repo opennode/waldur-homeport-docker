@@ -1,10 +1,10 @@
 FROM    centos:centos7
-LABEL   summary="Waldur Mastermind Docker Image" \
-        name="opennode/waldur-mastermind" \
+LABEL   summary="Waldur Homeport Docker Image" \
+        name="opennode/waldur-homeport" \
         vendor="OpenNode" \
         license="GPLv2" \
-        version="2.7" \
-        release="4" \
+        version="2.8" \
+        release="0" \
         maintainer="Andres Toomsalu <andres@opennodecloud.com>"
 
 # Add tini
