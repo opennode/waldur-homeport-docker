@@ -5,7 +5,9 @@ LABEL   summary="Waldur Homeport Docker Image" \
         license="GPLv2" \
         version="2.8" \
         release="0" \
-        maintainer="Andres Toomsalu <andres@opennodecloud.com>"
+        maintainer="Andres Toomsalu <andres@opennodecloud.com>" \
+        description="Self-Service Portal for Waldur Cloud Brokerage Platform" \
+        url="https://waldur.com"	
 
 # Add tini
 ENV TINI_VERSION v0.16.1
