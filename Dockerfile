@@ -2,7 +2,7 @@ FROM    registry.access.redhat.com/rhel7
 LABEL   summary="Waldur Homeport Docker Image" \
         name="opennode/waldur-homeport" \
         vendor="OpenNode" \
-        license="GPLv2" \
+        license="MIT" \
         version="2.8" \
         release="0" \
         maintainer="Andres Toomsalu <andres@opennodecloud.com>" \
@@ -42,7 +42,7 @@ RUN REPOLIST=rhel-7-server-rpms,rhel-7-server-optional-rpms,epel \
       --security --sec-severity=Important --sec-severity=Critical && \
     curl -o epel-release-latest-7.noarch.rpm -SL https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
       --retry 5 --retry-max-time 0 -C - && \
-    yum -y localinstall epel-release-latest-7.noarch.rpm && rm epel-release-latest-7.noarch.rpm && \
+    yum -y localinstall epel-release-latest-7.noarch.rpm && rm -f epel-release-latest-7.noarch.rpm && \
     yum -y install --disablerepo "*" --enablerepo ${REPOLIST} --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
     yum -y install http://opennodecloud.com/centos/7/waldur-release.rpm && \
     yum -y install waldur-homeport nginx jq && \
