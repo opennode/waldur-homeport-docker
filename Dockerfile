@@ -2,7 +2,7 @@ FROM    centos:centos7
 LABEL   summary="Waldur Homeport Docker Image" \
         name="opennode/waldur-homeport" \
         vendor="OpenNode" \
-        license="GPLv2" \
+        license="MIT" \
         version="2.8" \
         release="0" \
         maintainer="Andres Toomsalu <andres@opennodecloud.com>" \
