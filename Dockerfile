@@ -32,7 +32,11 @@ RUN cd /tmp && \
   chmod +x /usr/local/bin/gosu && \
   rm gosu.asc
 
-COPY rootfs /
+# Adding files
+COPY rootfs/etc/waldur-homeport /etc/waldur-homeport
+COPY rootfs/app-entrypoint.sh /
+COPY rootfs/tmp/help.md /tmp/
+COPY rootfs/licenses /licenses
 
 ### Install Homeport
 ENV container docker
