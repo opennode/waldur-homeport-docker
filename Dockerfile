@@ -1,4 +1,6 @@
 FROM    registry.access.redhat.com/rhel7
+MAINTAINER Andres Toomsalu <andres@opennodecloud.com>
+
 LABEL   summary="Waldur Homeport Docker Image" \
         name="opennode/waldur-homeport" \
         vendor="OpenNode" \
