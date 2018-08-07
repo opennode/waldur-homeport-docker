@@ -44,6 +44,7 @@ COPY rootfs/licenses /licenses
 ENV container docker
 RUN REPOLIST=rhel-7-server-rpms,rhel-7-server-optional-rpms,epel \
     INSTALL_PKGS="golang-github-cpuguy83-go-md2man" && \
+    yum-config-manager --disable rhel-7-server-htb-rpms && \
     yum -y update-minimal --disablerepo "*" --enablerepo rhel-7-server-rpms --setopt=tsflags=nodocs \
       --security --sec-severity=Important --sec-severity=Critical && \
     curl -o epel-release-latest-7.noarch.rpm -SL https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
